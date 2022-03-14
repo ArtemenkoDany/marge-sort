@@ -5,21 +5,24 @@ using namespace std;
 vector<float> vec;
 vector<float> aux;
 
-void merge(int first, int mid, int last){
-    
-    for(int l = first, r = mid, i = first; i <= last ;i++){ //loop (zaloop)a
+void merge(int first, int mid, int last)
+{
+    for(int l = first, r = mid, i = first; i <= last; i++)
+    {
         if (r > last)
              aux.at(i) = vec.at(l++);
         else if (l == mid)
             aux.at(i) = vec.at(r++);
-            else{
-        
+            else
+            {
         if (vec.at(l) >= vec.at(r))
             aux.at(i) = vec.at(r++);
         else
-            aux.at(i) = vec.at(l++);}
+            aux.at(i) = vec.at(l++);
+            }
     }
-    for(int x = first; x<= last; x++){
+    for(int x = first; x<= last; x++)
+    {
         vec.at(x) = aux.at(x);
     }
 }
@@ -35,12 +38,13 @@ void merge_sort(int first, int last){  //рекурсивная функция
 }
 
 
-int main(){
-    
+int main()
+{
     int z;
     cin >> z;
     
-    for(int x = 0; x < z; x++){
+    for(int x = 0; x < z; x++)
+    {
         int t;
         cin >> t;
         vec.push_back(t);
@@ -48,16 +52,20 @@ int main(){
     aux.resize(vec.size());
     merge_sort(0, z-1);
    
-    cout << vec.at(0);
-
+    cout << endl;
+    for(int x = 0; x < z; x++)
+    {
+    cout << vec.at(x) << " ";
+    }
+    cout << endl;
     return 0;
 }
 
 
 
-void gay(){
+void funk()
+{
     for(int i=1; i <= vec.size(); i*=2)
-        for(int k(0); k < vec.size()-i ;k+=i*2)
-            merge(k, k+i, k+i*2>vec.size()-2 ?vec.size()-1 :k+i*2);
-            
-    }
+        for(int k(0); k < vec.size()-i; k+=i*2)
+            merge(k, k+i, k+i*2>vec.size()-2 ? vec.size()-1 :k+i*2);
+}
